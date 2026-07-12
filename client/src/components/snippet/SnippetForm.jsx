@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useCreateSnippet } from "../../hooks/useSnippets";
 
 const LANGUAGES = ["javascript", "python", "java", "cpp", "html", "css", "sql", "typescript", "go", "rust"];
@@ -25,8 +26,19 @@ function SnippetForm({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
-      <div className="bg-gray-800 rounded-xl p-6 w-full max-w-lg">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="bg-gray-800 rounded-xl p-6 w-full max-w-lg"
+      >
         <h2 className="text-xl font-bold text-white mb-4">New Snippet</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
           <input
@@ -68,8 +80,8 @@ function SnippetForm({ onClose }) {
             </button>
           </div>
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

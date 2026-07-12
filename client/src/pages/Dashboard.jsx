@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Plus, LogOut, Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 import { useSnippets } from "../hooks/useSnippets";
 import SnippetCard from "../components/snippet/SnippetCard";
 import SnippetForm from "../components/snippet/SnippetForm";
-import useAuthStore from "../store/authStore";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../components/layout/Navbar";
 
 function Dashboard() {
   const [showForm, setShowForm] = useState(false);
@@ -17,31 +15,16 @@ function Dashboard() {
     language: languageFilter || undefined,
   });
 
-  const logout = useAuthStore((state) => state.logout);
-  const user = useAuthStore((state) => state.user);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-
   return (
-    <div className="min-h-screen bg-gray-900 p-6">
-      <Navbar />
+    <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-white">Hi, {user?.name} 👋</h1>
-        <div className="flex gap-3">
-          <button
-            onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-          >
-            <Plus size={18} /> New Snippet
-          </button>
-          <button onClick={handleLogout} className="text-gray-400 hover:text-white">
-            <LogOut size={20} />
-          </button>
-        </div>
+        <h1 className="text-2xl font-bold text-white">All Snippets</h1>
+        <button
+          onClick={() => setShowForm(true)}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+        >
+          <Plus size={18} /> New Snippet
+        </button>
       </div>
 
       <div className="flex gap-3 mb-6">
@@ -83,13 +66,17 @@ function Dashboard() {
         <p className="text-gray-400">No snippets found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {snippets?.map((snippet) => (
-            <SnippetCard key={snippet._id} snippet={snippet} />
-          ))}
+          <AnimatePresence>
+            {snippets?.map((snippet) => (
+              <SnippetCard key={snippet._id} snippet={snippet} />
+            ))}
+          </AnimatePresence>
         </div>
       )}
 
-      {showForm && <SnippetForm onClose={() => setShowForm(false)} />}
+      <AnimatePresence>
+        {showForm && <SnippetForm onClose={() => setShowForm(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
