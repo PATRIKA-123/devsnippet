@@ -23,7 +23,7 @@ function Navbar() {
 
       <button
         onClick={() => document.dispatchEvent(new CustomEvent("open-search"))}
-        className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-400 px-3 py-1.5 rounded-lg text-sm transition w-64"
+        className="flex items-center gap-2 bg-gray-800 border border-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-1.5 rounded-full text-sm transition shadow-sm shadow-black/10 w-64"
       >
         <Search size={16} />
         <span>Search snippets...</span>

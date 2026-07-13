@@ -17,31 +17,32 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-white">All Snippets</h1>
-        <button
-          onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
-        >
-          <Plus size={18} /> New Snippet
-        </button>
-      </div>
-
-      <div className="flex gap-3 mb-6">
-        <div className="relative flex-1 max-w-sm">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-          <input
-            placeholder="Search snippets..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 rounded bg-gray-800 text-white outline-none border border-gray-700 focus:border-blue-500"
-          />
+      <div className="flex flex-col gap-4 mb-6 rounded-2xl border border-gray-700 bg-gray-800/70 p-5 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <h1 className="text-2xl font-bold text-white">All Snippets</h1>
+          <button
+            onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition shadow-sm shadow-blue-500/20"
+          >
+            <Plus size={18} /> New Snippet
+          </button>
         </div>
-        <select
-          value={languageFilter}
-          onChange={(e) => setLanguageFilter(e.target.value)}
-          className="px-3 py-2 rounded bg-gray-800 text-white outline-none border border-gray-700"
-        >
+
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative flex-1 max-w-sm">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+            <input
+              placeholder="Search snippets..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-9 pr-3 py-2 rounded-full bg-gray-900 text-white outline-none border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30"
+            />
+          </div>
+          <select
+            value={languageFilter}
+            onChange={(e) => setLanguageFilter(e.target.value)}
+            className="w-full sm:w-auto px-3 py-2 rounded-full bg-gray-900 text-white outline-none border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30"
+          >
           <option value="">All languages</option>
           <option value="javascript">JavaScript</option>
           <option value="python">Python</option>
