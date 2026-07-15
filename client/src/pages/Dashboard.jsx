@@ -79,6 +79,7 @@ function Dashboard() {
         {showForm && <SnippetForm onClose={() => setShowForm(false)} />}
       </AnimatePresence>
     </div>
+  </div>
   );
 }
 
