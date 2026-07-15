@@ -2,7 +2,7 @@
 
 A full-stack code snippet manager built with the MERN stack — save, organize, search, and share reusable code snippets with syntax highlighting, tags, and public share links.
 
-**Live Demo:** [your-deployed-link-here](#) | **API:** [your-api-link-here](#)
+**Live Demo:** [](#) | **API:** [](#)
 
 ![DevSnippets](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
