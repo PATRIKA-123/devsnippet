@@ -11,7 +11,7 @@ function PublicSnippet() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/public/${shareId}`)
+      .get(`/api/public/${shareId}`)
       .then((res) => setSnippet(res.data.snippet))
       .catch(() => setError("Snippet not found or is private."));
   }, [shareId]);
