@@ -12,8 +12,20 @@ const { errorHandler, notFound } = require("./middleware/errorHandler");
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // Security middleware
 app.use(helmet());
+app.use(
+  cors({
+    origin: [
+      "https://devsnippet-indol.vercel.app/", // Replace with your actual live Vercel URL
+      "http://localhost:5173",                       // For local development
+    ],
+    credentials: true,
+  })
+);
+
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 app.use(mongoSanitize());
