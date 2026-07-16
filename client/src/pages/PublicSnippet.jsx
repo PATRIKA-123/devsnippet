@@ -11,7 +11,7 @@ function PublicSnippet() {
 
   useEffect(() => {
     axios
-      .get(`/api/public/${shareId}`)
+      .get(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/public/${shareId}`)
       .then((res) => setSnippet(res.data.snippet))
       .catch(() => setError("Snippet not found or is private."));
   }, [shareId]);
