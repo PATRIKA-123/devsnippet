@@ -40,19 +40,28 @@ function Navbar() {
           </div>
         </button>
 
-        {showMenu && (
-          <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-1">
-            <div className="px-4 py-2 text-sm text-gray-400 border-b border-gray-700">
-              {user?.name}
-            </div>
-            <button
-              onClick={handleLogout}
-              className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
-            >
-              <LogOut size={14} /> Log out
-            </button>
-          </div>
-        )}
+       {showMenu && (
+  <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-1">
+    <div className="px-4 py-2 text-sm text-gray-400 border-b border-gray-700">
+      {user?.name}
+    </div>
+    <button
+      onClick={() => {
+        setShowMenu(false);
+        navigate("/dashboard/profile");
+      }}
+      className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+    >
+      <User size={14} /> View Profile
+    </button>
+    <button
+      onClick={handleLogout}
+      className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+    >
+      <LogOut size={14} /> Log out
+    </button>
+  </div>
+)}
       </div>
     </nav>
   );

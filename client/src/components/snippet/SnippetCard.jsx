@@ -38,14 +38,19 @@ function SnippetCard({ snippet }) {
       initial={{ opacity: 0, y: 20, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(0,0,0,0.25)" }}
+      whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(59,130,246,0.15)" }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="bg-gray-800 rounded-xl p-4 flex flex-col gap-3 border border-gray-700"
+      className="relative rounded-2xl p-4 flex flex-col gap-3
+                 bg-white/5 backdrop-blur-xl border border-white/10
+                 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
     >
-      <div className="flex justify-between items-start">
+      {/* subtle gradient glow accent */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
+
+      <div className="relative flex justify-between items-start">
         <div>
           <h3 className="text-white font-semibold">{snippet.title}</h3>
-          <span className="text-xs text-blue-400 uppercase">{snippet.language}</span>
+          <span className="text-xs text-blue-400 uppercase tracking-wide">{snippet.language}</span>
         </div>
         <div className="flex gap-2">
           <motion.button whileTap={{ scale: 0.85 }} onClick={() => toggleFavorite.mutate(snippet._id)}>
@@ -63,17 +68,22 @@ function SnippetCard({ snippet }) {
         </div>
       </div>
 
-      <SyntaxHighlighter
-        language={snippet.language}
-        style={oneDark}
-        customStyle={{ borderRadius: "8px", fontSize: "13px", maxHeight: "150px" }}
-      >
-        {snippet.code}
-      </SyntaxHighlighter>
+      <div className="relative rounded-lg overflow-hidden border border-white/5">
+        <SyntaxHighlighter
+          language={snippet.language}
+          style={oneDark}
+          customStyle={{ margin: 0, fontSize: "13px", maxHeight: "150px", background: "rgba(0,0,0,0.3)" }}
+        >
+          {snippet.code}
+        </SyntaxHighlighter>
+      </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="relative flex flex-wrap gap-2">
         {snippet.tags.map((tag) => (
-          <span key={tag} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-full">
+          <span
+            key={tag}
+            className="text-xs bg-white/10 text-gray-300 px-2 py-1 rounded-full border border-white/10"
+          >
             #{tag}
           </span>
         ))}

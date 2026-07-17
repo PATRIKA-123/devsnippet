@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { login as loginApi } from "../api/auth";
 import useAuthStore from "../store/authStore";
 
@@ -30,7 +31,7 @@ function Login() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-      <div className="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-sm">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] w-full max-w-sm">
         <h1 className="text-2xl font-bold text-white mb-6 text-center">
           Log in to DevSnippets
         </h1>
@@ -58,13 +59,19 @@ function Login() {
             className="w-full px-4 py-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
-          <button
+            <motion.button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
-          >
-            {loading ? "Logging in..." : "Log In"}
-          </button>
+             whileHover={{ scale: 1.02 }}
+             whileTap={{ scale: 0.97 }}
+             className="relative w-full overflow-hidden text-white font-semibold py-2.5 rounded-xl
+             bg-linear-to-r from-blue-600 via-blue-500 to-purple-600
+             bg-size-[200%_100%] bg-left hover:bg-right
+             transition-[background-position] duration-500 ease-out
+             shadow-lg shadow-blue-600/30"
+           >
+  {loading ? "Logging in..." : "Log In"}
+</motion.button>
         </form>
 
         <p className="text-gray-400 text-sm text-center mt-4">

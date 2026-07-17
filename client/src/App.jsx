@@ -8,6 +8,7 @@ import Favorites from "./pages/Favorites";
 import RecentlyUsed from "./pages/RecentlyUsed";
 import AppLayout from "./components/layout/AppLayout";
 import useAuthStore from "./store/authStore";
+import Profile from "./pages/Profile";
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore((state) => state.token);
@@ -36,6 +37,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="recent" element={<RecentlyUsed />} />
+           <Route path="profile" element={<Profile />} />
           {/* Future nested routes will go here, e.g.: */}
           {/* <Route path="collections/:id" element={<CollectionView />} /> */}
         </Route>

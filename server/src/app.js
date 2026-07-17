@@ -16,25 +16,26 @@ app.set("trust proxy", 1);
 
 // Security middleware
 app.use(helmet());
+
 app.use(
   cors({
     origin: [
-      "https://devsnippet-indol.vercel.app/", // Replace with your actual live Vercel URL
-      "http://localhost:5173",                       // For local development
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://devsnippet-indol.vercel.app",
     ],
     credentials: true,
   })
 );
 
-app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 app.use(mongoSanitize());
 app.use(morgan("dev"));
 
 // Rate limiting
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // limit each IP to 20 requests per window
+  windowMs: 15 * 60 * 1000,
+  max: 20,
   message: { message: "Too many attempts, please try again later" },
 });
 

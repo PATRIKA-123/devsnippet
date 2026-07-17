@@ -10,7 +10,7 @@ function Sidebar() {
     }`;
 
   return (
-    <aside className="w-56 border-r border-gray-800 bg-gray-900 p-4 flex flex-col gap-3 overflow-y-auto">
+    <aside className="w-56 border-r border-gray-800 bg-gray-900 p-4 flex flex-col gap-1 overflow-y-auto h-full">
       <NavLink to="/dashboard" end className={linkClass}>
         <LayoutGrid size={16} /> All Snippets
       </NavLink>
