@@ -103,7 +103,7 @@ devsnippets/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/YOUR_USERNAME/devsnippets.git
+   git clone  https://github.com/PATRIKA-123/devsnippet.git
    cd devsnippets
    ```
 
@@ -155,8 +155,8 @@ Tests run automatically on every push via GitHub Actions.
 
 ## 🌐 Deployment
 
-- **Frontend:** Deployed on [Vercel](https://vercel.com)
-- **Backend:** Deployed on [Render](https://render.com)
+- **Frontend:** Deployed on [Vercel](https://devsnippet-indol.vercel.app)
+- **Backend:** Deployed on [Render](https://devsnippets-api-oryx.onrender.com)
 - **Database:** MongoDB Atlas
 
 ## 🗺️ Roadmap
@@ -173,4 +173,4 @@ This project is licensed under the MIT License.
 
 ## 👤 Author
 
-Built by [Your Name](https://github.com/YOUR_USERNAME) — feel free to reach out or open an issue.
+Built by [Patrika](https://github.com/PATRIKA-123) — feel free to reach out or open an issue.
