@@ -15,53 +15,63 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-6 py-3 border-b border-gray-800 bg-gray-900 sticky top-0 z-40">
-      <div className="flex items-center gap-2 text-white font-bold text-lg">
-        <Code2 size={22} className="text-blue-400" />
-        DevSnippets
+    <nav className="flex items-center justify-between px-6 py-3 border-b border-white/10 bg-gray-900/60 backdrop-blur-md sticky top-0 z-40 shadow-lg shadow-black/20 transition-all">
+      {/* Logo */}
+      <div className="flex items-center gap-2 text-white font-bold text-lg tracking-wide">
+        <div className="p-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm">
+          <Code2 size={20} className="text-blue-400" />
+        </div>
+        <span>DevSnippets</span>
       </div>
 
+      {/* Glass Search Bar */}
       <button
         onClick={() => document.dispatchEvent(new CustomEvent("open-search"))}
-        className="flex items-center gap-2 bg-gray-800 border border-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-1.5 rounded-full text-sm transition shadow-sm shadow-black/10 w-64"
+        className="flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-gray-300 px-3.5 py-1.5 rounded-full text-sm transition-all shadow-inner w-64 backdrop-blur-sm group"
       >
-        <Search size={16} />
-        <span>Search snippets...</span>
-        <kbd className="ml-auto text-xs bg-gray-700 px-1.5 py-0.5 rounded">⌘K</kbd>
+        <Search size={16} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+        <span className="text-gray-400 group-hover:text-gray-300 transition-colors">Search snippets...</span>
+        <kbd className="ml-auto text-[10px] font-semibold bg-white/10 text-gray-300 border border-white/10 px-1.5 py-0.5 rounded shadow-sm">
+          ⌘K
+        </kbd>
       </button>
 
+      {/* User Menu Trigger */}
       <div className="relative">
         <button
           onClick={() => setShowMenu(!showMenu)}
-          className="flex items-center gap-2 text-gray-300 hover:text-white"
+          className="flex items-center gap-2 text-gray-300 hover:text-white transition focus:outline-none"
         >
-          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-sm font-semibold">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 border border-white/20 flex items-center justify-center text-sm font-semibold text-white shadow-md shadow-blue-500/20 hover:scale-105 transition-transform">
             {user?.name?.[0]?.toUpperCase() || <User size={16} />}
           </div>
         </button>
 
-       {showMenu && (
-  <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-1">
-    <div className="px-4 py-2 text-sm text-gray-400 border-b border-gray-700">
-      {user?.name}
-    </div>
-    <button
-      onClick={() => {
-        setShowMenu(false);
-        navigate("/dashboard/profile");
-      }}
-      className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
-    >
-      <User size={14} /> View Profile
-    </button>
-    <button
-      onClick={handleLogout}
-      className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
-    >
-      <LogOut size={14} /> Log out
-    </button>
-  </div>
-)}
+        {/* Glass Dropdown Menu */}
+        {showMenu && (
+          <div className="absolute right-0 mt-3 w-52 bg-gray-900/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl py-1.5 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            <div className="px-4 py-2.5 text-xs font-semibold text-gray-400 border-b border-white/10 truncate">
+              {user?.name || "User"}
+            </div>
+            
+            <button
+              onClick={() => {
+                setShowMenu(false);
+                navigate("/dashboard/profile");
+              }}
+              className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-white/10 flex items-center gap-2.5 transition-colors"
+            >
+              <User size={15} className="text-gray-400" /> View Profile
+            </button>
+            
+            <button
+              onClick={handleLogout}
+              className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 flex items-center gap-2.5 transition-colors border-t border-white/5"
+            >
+              <LogOut size={15} /> Log out
+            </button>
+          </div>
+        )}
       </div>
     </nav>
   );
